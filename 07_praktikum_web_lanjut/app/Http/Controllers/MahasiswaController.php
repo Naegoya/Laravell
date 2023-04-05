@@ -9,10 +9,11 @@
 
     class MahasiswaController extends Controller
     {
-        public function cari(Request $request){
-            $cari = $request->cariMahasiswa;
-            $mahasiswas = Mahasiswa::where('Nama', 'like', '%'.$cari.'%')->paginate(5);
-            return view('mahasiswas.index', compact('mahasiswas'));
+        public function search(Request $request){
+        $keyword = $request->search;
+        $mahasiswas = Mahasiswa::where('Nama', 'like', "%" . $keyword . "%")->paginate(1);
+        return view('mahasiswas.index', compact('mahasiswas'))->with('i', (request()->input('page', 1) - 1) * 5);
+    
         }
     /**
      * Display a listing of the resource.

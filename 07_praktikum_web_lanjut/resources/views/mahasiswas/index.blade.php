@@ -6,23 +6,16 @@
         <div class="pull-left mt-2">
             <h2>JURUSAN TEKNOLOGI INFORMASI-POLITEKNIK NEGERI MALANG</h2>
         </div>
-        <div class="float-right my-2">
-            <a class="btn btn-success" href="{{ route('mahasiswas.create') }}"> Input Mahasiswa</a>
-        </div>
     </div>
-</div>
-<form class="row mb-3 mt-5" action="{{ route('cari') }}" method="POST">
-    @csrf
-    <div class="col-md-6">
-        <div class="d-flex flex-row">
-            <input type="text" value="{{ (request()->cariMahasiswa)? request()->cariMahasiswa : '' }}" name="cariMahasiswa" class="form-control" placeholder="cariMahasiswa">
-            <button type="submit" class="btn btn-primary ml-3">Cari</button>
-        </div>
-    </div>
-    <div class="col-md-6 d-flex flex-row justify-content-end">
-        <a class="btn btn-success" href="{{ route('mahasiswas.create') }}">Input Mahasiswa</a>
-    </div>
-</form>
+<form class="form-left my-2" method="get" action="{{ route('search') }}">
+            <div class="form-group w-80 mb-3">
+                        <input type="text" name="search" class="form-control w-50 d-inline" id="search" placeholder="Masukkan Nama">
+                        <button type="submit" class="btn btn-primary mb-1">Cari</button>
+                        <a class="btn btn-success" href="{{ route('mahasiswas.create') }}"> Input Mahasiswa</a>
+                        <a class="btn btn-success right" href="{{ route('mahasiswas.index') }}" style="margin-left:165px"> Show All Mahasiswa</a>
+            </div>
+    
+    
 
     @if ($message = Session::get('success'))
     <div class="alert alert-success">
@@ -66,4 +59,5 @@
     </tr>
     @endforeach
     </table> 
+    {{ $mahasiswas->links()}}
     @endsection

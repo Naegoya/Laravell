@@ -17,7 +17,7 @@ use Illuminate\Support\Facades\View;
 |
 */
 Route::resource('mahasiswas', MahasiswaController::class);
-Route::post('cari', [MahasiswaController::class, 'cari'])->name('cari');
+Route::get('/search',[MahasiswaController::class, 'search'])->name('search');
 
 // Route::get('/', function () {
 //     return view('welcome');
